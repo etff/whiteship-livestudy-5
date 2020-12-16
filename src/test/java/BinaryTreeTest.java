@@ -17,10 +17,10 @@ class BinaryTreeTest {
         binaryTree.add(6);
         binaryTree.add(4);
         binaryTree.add(8);
-        binaryTree.add(3);
+        binaryTree.add(2);
         binaryTree.add(5);
         binaryTree.add(7);
-        binaryTree.add(9);
+        binaryTree.add(10);
     }
 
     @DisplayName("값이 있는지 확인")
@@ -44,13 +44,13 @@ class BinaryTreeTest {
     @DisplayName("DFS 중위순회, LEFT -> ROOT-> RIGHT 순으로 순회한다")
     @Test
     void dfs() {
-        assertThat(binaryTree.dfsInOrder()).isEqualTo(Arrays.asList(3, 4, 5, 6, 7, 8, 9));
+        assertThat(binaryTree.dfsInOrder()).isEqualTo(Arrays.asList(2, 4, 5, 6, 7, 8, 10));
     }
 
-    @DisplayName("BFS 중위순회, LEFT -> ROOT-> RIGHT 순으로 순회한다")
+    @DisplayName("BFS 탐색")
     @Test
     void bfs() {
-        assertThat(binaryTree.bfsInOrder()).isEqualTo(Arrays.asList(6, 4, 8, 3, 5, 7, 9));
+        assertThat(binaryTree.bfs()).isEqualTo(Arrays.asList(6, 4, 8, 2, 5, 7, 10));
     }
 
 

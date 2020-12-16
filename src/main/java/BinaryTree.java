@@ -132,7 +132,7 @@ public class BinaryTree {
         return result;
     }
 
-    public List<Integer> bfsInOrder() {
+    public List<Integer> bfs() {
         List<Integer> result = new ArrayList<>();
         if (root == null) {
             return result;
