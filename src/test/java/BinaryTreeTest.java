@@ -1,8 +1,10 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import org.junit.jupiter.api.Test;
 
 @DisplayName("BinaryTree")
 class BinaryTreeTest {
@@ -38,5 +40,18 @@ class BinaryTreeTest {
         binaryTree.delete(7);
         assertThat(binaryTree.find(7)).isFalse();
     }
+
+    @DisplayName("DFS 중위순회, LEFT -> ROOT-> RIGHT 순으로 순회한다")
+    @Test
+    void dfs() {
+        assertThat(binaryTree.dfsInOrder()).isEqualTo(Arrays.asList(3, 4, 5, 6, 7, 8, 9));
+    }
+
+    @DisplayName("BFS 중위순회, LEFT -> ROOT-> RIGHT 순으로 순회한다")
+    @Test
+    void bfs() {
+        assertThat(binaryTree.bfsInOrder()).isEqualTo(Arrays.asList(6, 4, 8, 3, 5, 7, 9));
+    }
+
 
 }

@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class BinaryTree {
     Node root;
 
@@ -53,6 +55,10 @@ public class BinaryTree {
             if (current.right == null) {
                 return current.left;
             }
+            int smallestValue = findSmallestValue(current.right);
+            current.value = smallestValue;
+            current.right = deleteRecursive(current.right, smallestValue);
+            return current;
         }
         if (value < current.value) {
             current.left = deleteRecursive(current.left, value);
@@ -60,6 +66,10 @@ public class BinaryTree {
         }
         current.right = deleteRecursive(current.right, value);
         return current;
+    }
+
+    private int findSmallestValue(Node root) {
+        return root.left == null ? root.value : findSmallestValue(root.left);
     }
 
     /**
@@ -87,7 +97,7 @@ public class BinaryTree {
     }
 
     /**
-     * 후 순회
+     * 후위 순회
      * @param node
      */
     public void traversePostOrder(Node node) {
@@ -96,6 +106,50 @@ public class BinaryTree {
             traversePostOrder(node.right);
             System.out.print(" " + node.value);
         }
+    }
+
+    public Node getRoot() {
+        return root;
+    }
+
+    public List<Integer> dfsInOrder() {
+        Stack<Node> stack = new Stack<>();
+        List<Integer> result = new ArrayList<>();
+        Node current = root;
+        stack.push(root);
+        while(! stack.isEmpty()) {
+            while(current.left != null) {
+                current = current.left;
+                stack.push(current);
+            }
+            current = stack.pop();
+            result.add(current.value);
+            if(current.right != null) {
+                current = current.right;
+                stack.push(current);
+            }
+        }
+        return result;
+    }
+
+    public List<Integer> bfsInOrder() {
+        List<Integer> result = new ArrayList<>();
+        if (root == null) {
+            return result;
+        }
+        Queue<Node> nodes = new LinkedList<>();
+        nodes.add(root);
+        while (!nodes.isEmpty()) {
+            Node node = nodes.remove();
+            result.add(node.value);
+            if (node.left != null) {
+                nodes.add(node.left);
+            }
+            if (node.right != null) {
+                nodes.add(node.right);
+            }
+        }
+        return result;
     }
 
 
